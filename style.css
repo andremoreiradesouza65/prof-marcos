@@ -1,6 +1,7 @@
 :root {
-  --amarelo-claro: #FAD169;
-  --amarelo-escuro: #B7873D;
+  /* Nova paleta de cores: tons de amarelo-mel mais escuros e elegantes */
+  --amarelo-claro: #F2C144; /* Amarelo mel suave */
+  --amarelo-escuro: #B8860B; /* Ouro velho, mais escuro */
   --cinza-escuro: #333;
   --cinza-medio: #555;
   --branco: #fff;
@@ -20,28 +21,27 @@ body {
   background-color: var(--cinza-claro);
 }
 
-/* --- Cabeçalho com Degradê e Flexbox --- */
+/* --- Cabeçalho com Degradê e Flexbox (AJUSTADO) --- */
 header {
-  /* Define o degradê */
   background: linear-gradient(
     135deg,
     var(--amarelo-claro) 0%,
     var(--amarelo-escuro) 50%,
     var(--amarelo-claro) 100%
   );
-
-  /* Configura o tamanho do fundo para ser maior que o elemento */
-  background-size: 400% 400%;
-
-  /* Aplica a animação */
-  animation: gradient-animation 15s ease infinite;
+  /* Novo tamanho para a animação. Deixa o gradiente maior para um movimento mais sutil */
+  background-size: 300% 300%;
+  
+  /* Mantém a animação */
+  animation: gradient-animation 10s ease infinite;
 
   color: var(--branco);
   padding: 1rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 }
 
-/* Define a animação */
+/* Animação ajustada para um movimento mais sutil */
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -54,73 +54,56 @@ header {
   }
 }
 
-/* --- Cabeçalho e Navegação (Ajustado) --- */
+/* --- Navegação e Menu (Corrigido) --- */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative; /* Adicione isso para que o menu flutue corretamente */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+nav h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    align-items: center; /* Centraliza verticalmente a lista de links */
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-/* --- Menu de Hambúrguer (Ajustado) --- */
+nav a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--cinza-medio);
+}
+
 .hamburger-menu {
-    display: none; /* Esconde por padrão */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1000; /* Garante que o botão fique na frente de outros elementos */
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
 }
 
 .hamburger-menu .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: var(--branco);
-    transition: all 0.3s ease-in-out;
-}
-
-/* --- Responsividade (Media Queries Ajustadas) --- */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: row; /* Mantém o logo e o hambúrguer na mesma linha */
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav ul {
-        display: none; /* Esconde a lista por padrão em mobile */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 100%; /* Posiciona o menu abaixo do cabeçalho */
-        left: 0;
-        width: 100%;
-        background-color: var(--amarelo-escuro);
-        padding: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-    }
-
-    /* Adiciona a classe 'active' com JavaScript para mostrar o menu */
-    nav ul.active {
-        display: flex;
-    }
-
-    .hamburger-menu {
-        display: block; /* Mostra o botão de hambúrguer */
-    }
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--branco);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* --- Seções do Site com Flexbox --- */
@@ -144,18 +127,16 @@ section {
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
-  /* Add this line to center the text and inline-block elements like the button */
   text-align: center;
 }
 
 .hero-content h2 {
   font-size: 2.5rem;
-  color: var(--amarelo-escuro);
+  color: var(--amarelo-escuro); /* Usa a nova cor amarela */
   margin-bottom: 1rem;
 }
 
 .hero-content p {
-  /* You may need to add this if your paragraph is not centering */
   text-align: center;
 }
 
@@ -190,9 +171,8 @@ section {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  /* Ajuste para um comportamento mais flexível */
-  flex: 1 1 300px; 
-  max-width: calc(33.333% - 2rem); /* Garantir 3 cards por linha */
+  flex: 1 1 300px;
+  max-width: calc(33.333% - 2rem);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -223,7 +203,7 @@ section {
 }
 
 #contact-form button {
-  background-color: var(--amarelo-escuro);
+  background-color: var(--amarelo-escuro); /* Usa a nova cor amarela */
   color: var(--branco);
   border: none;
   padding: 1rem;
@@ -242,7 +222,7 @@ section {
 }
 
 .social-icons a {
-  color: var(--amarelo-escuro);
+  color: var(--amarelo-escuro); /* Usa a nova cor amarela */
   font-size: 2.2rem;
   margin: 0 1rem;
   transition: color 0.3s ease;
@@ -260,36 +240,64 @@ footer {
   padding: 1.5rem;
 }
 
-/* --- Responsividade (Media Queries) --- */
+/* --- Responsividade (Mobile) --- */
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
   }
 
-  nav ul {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .hero-content h2 {
-    font-size: 2rem;
-  }
-
-  section {
-    padding: 3rem 1rem;
+  nav h1 {
+    font-size: 1.5rem;
+    margin: 0;
   }
   
-  .card {
-    max-width: 100%; /* Permite que os cards ocupem toda a largura em telas menores */
-  }
-}
-
-@media (max-width: 600px) {
   nav ul {
+    display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    
+    background-color: var(--amarelo-escuro); /* Usa a nova cor amarela */
+    z-index: 999;
+    
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  nav ul.active {
+    transform: translateX(0);
+  }
+
+  nav a {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    color: var(--branco);
+  }
+
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+  }
+  
+  .hero-content h2 {
+    font-size: 2rem;
+    word-wrap: break-word;
+  }
+
+  .hero-content p {
+    padding: 0 1rem;
   }
 
   .workshop-cards {
@@ -297,11 +305,6 @@ footer {
   }
 
   .card {
-    width: 100%;
-    margin-bottom: 1rem;
+    max-width: 100%;
   }
 }
-
-/* Dentro do seu CSS */
-
-/* Esconde o menu de hambúrguer em telas maiores */
