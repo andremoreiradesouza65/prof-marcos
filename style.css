@@ -54,35 +54,73 @@ header {
   }
 }
 
+/* --- Cabeçalho e Navegação (Ajustado) --- */
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-
-nav h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative; /* Adicione isso para que o menu flutue corretamente */
 }
 
 nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center; /* Centraliza verticalmente a lista de links */
 }
 
-nav a {
-  color: var(--branco);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
+/* --- Menu de Hambúrguer (Ajustado) --- */
+.hamburger-menu {
+    display: none; /* Esconde por padrão */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000; /* Garante que o botão fique na frente de outros elementos */
 }
 
-nav a:hover {
-  color: var(--cinza-medio);
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--branco);
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Responsividade (Media Queries Ajustadas) --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row; /* Mantém o logo e o hambúrguer na mesma linha */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav ul {
+        display: none; /* Esconde a lista por padrão em mobile */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 100%; /* Posiciona o menu abaixo do cabeçalho */
+        left: 0;
+        width: 100%;
+        background-color: var(--amarelo-escuro);
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    /* Adiciona a classe 'active' com JavaScript para mostrar o menu */
+    nav ul.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: block; /* Mostra o botão de hambúrguer */
+    }
 }
 
 /* --- Seções do Site com Flexbox --- */
@@ -267,49 +305,3 @@ footer {
 /* Dentro do seu CSS */
 
 /* Esconde o menu de hambúrguer em telas maiores */
-.hamburger-menu {
-  display: none;
-}
-
-/* Esconde o menu de navegação em telas menores por padrão */
-.nav-links {
-  display: flex; /* ou block, dependendo do layout desejado */
-  /* outros estilos para o menu desktop */
-}
-
-@media (max-width: 768px) {
-  nav ul {
-    /* Esconde a lista de links para dar espaço ao hambúrguer */
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background-color: var(--amarelo-escuro); /* cor de fundo do menu aberto */
-  }
-
-  /* Mostra a lista de links quando o menu está ativo */
-  .nav-links.active {
-    display: flex;
-  }
-
-  .hamburger-menu {
-    display: block; /* Mostra o botão do hambúrguer */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .hamburger-menu .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--branco);
-    border-radius: 5px;
-  }
-}
