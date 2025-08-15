@@ -1,13 +1,14 @@
+/* Suas variáveis de cor */
 :root {
-  /* Nova paleta de cores: tons de amarelo-mel mais escuros e elegantes */
-  --amarelo-claro: #F2C144; /* Amarelo mel suave */
-  --amarelo-escuro: #B8860B; /* Ouro velho, mais escuro */
+  --amarelo-claro: #F2C144;
+  --amarelo-escuro: #B8860B;
   --cinza-escuro: #333;
   --cinza-medio: #555;
   --branco: #fff;
   --cinza-claro: #f4f4f4;
 }
 
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -19,42 +20,26 @@ body {
   line-height: 1.6;
   color: var(--cinza-medio);
   background-color: var(--cinza-claro);
+  overflow-x: hidden;
 }
 
-/* --- Cabeçalho com Degradê e Flexbox (AJUSTADO) --- */
+/* --- Cabeçalho com Degradê e Flexbox --- */
 header {
-  background: linear-gradient(
-    135deg,
-    var(--amarelo-claro) 0%,
-    var(--amarelo-escuro) 50%,
-    var(--amarelo-claro) 100%
-  );
-  /* Novo tamanho para a animação. Deixa o gradiente maior para um movimento mais sutil */
+  background: linear-gradient(135deg, var(--amarelo-claro) 0%, var(--amarelo-escuro) 50%, var(--amarelo-claro) 100%);
   background-size: 300% 300%;
-  
-  /* Mantém a animação */
   animation: gradient-animation 10s ease infinite;
-
   color: var(--branco);
   padding: 1rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: visible;
 }
 
-/* Animação ajustada para um movimento mais sutil */
 @keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 0%; }
 }
 
-/* --- Navegação e Menu (Corrigido) --- */
+/* --- Navegação --- */
 nav {
   display: flex;
   justify-content: space-between;
@@ -106,7 +91,7 @@ nav a:hover {
   transition: all 0.3s ease-in-out;
 }
 
-/* --- Seções do Site com Flexbox --- */
+/* --- Seções --- */
 main {
   padding: 2rem 0;
 }
@@ -127,17 +112,12 @@ section {
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .hero-content h2 {
   font-size: 2.5rem;
-  color: var(--amarelo-escuro); /* Usa a nova cor amarela */
+  color: var(--amarelo-escuro);
   margin-bottom: 1rem;
-}
-
-.hero-content p {
-  text-align: center;
 }
 
 .cta-button {
@@ -157,7 +137,26 @@ section {
   transform: translateY(-3px);
 }
 
-/* --- Cards do Workshop com Flexbox --- */
+/* --- Foto de Perfil --- */
+.profile-image-container {
+  max-width: 300px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 8px;
+  background-color: var(--branco);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* --- Cards do Workshop --- */
 .workshop-cards {
   display: flex;
   flex-wrap: wrap;
@@ -174,6 +173,7 @@ section {
   flex: 1 1 300px;
   max-width: calc(33.333% - 2rem);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
 .card:hover {
@@ -181,11 +181,7 @@ section {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Contato e ícones --- */
-#contato {
-  background-color: var(--cinza-claro);
-}
-
+/* --- Contato --- */
 #contact-form {
   display: flex;
   flex-direction: column;
@@ -203,7 +199,7 @@ section {
 }
 
 #contact-form button {
-  background-color: var(--amarelo-escuro); /* Usa a nova cor amarela */
+  background-color: var(--amarelo-escuro);
   color: var(--branco);
   border: none;
   padding: 1rem;
@@ -217,21 +213,6 @@ section {
   background-color: #A0722E;
 }
 
-.social-icons {
-  margin-top: 1.5rem;
-}
-
-.social-icons a {
-  color: var(--amarelo-escuro); /* Usa a nova cor amarela */
-  font-size: 2.2rem;
-  margin: 0 1rem;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: var(--cinza-escuro);
-}
-
 /* --- Rodapé --- */
 footer {
   background-color: var(--cinza-escuro);
@@ -242,33 +223,36 @@ footer {
 
 /* --- Responsividade (Mobile) --- */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+
   nav {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     padding: 1rem;
   }
 
-  nav h1 {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  
   nav ul {
-    display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
-    
-    background-color: var(--amarelo-escuro); /* Usa a nova cor amarela */
+    background-color: var(--amarelo-escuro);
     z-index: 999;
-    
     align-items: center;
     justify-content: center;
     gap: 2rem;
@@ -278,33 +262,33 @@ footer {
     transform: translateX(0);
   }
 
-  nav a {
-    font-size: 1.5rem;
-    padding: 1rem 0;
-    color: var(--branco);
-  }
-
   .hamburger-menu {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    z-index: 1000;
+  }
+
+  #hero {
+    padding: 3rem 1rem;
+  }
+
+  .hero-content h2 {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    line-height: 1.25;
+  }
+
+  /* Ajustes da seção Workshop para celular */
+  .workshop-cards {
+    /* Força os cards a se empilharem no celular */
+    flex-direction: column;
+    /* Reduz o espaço entre os cards para economizar espaço vertical */
+    gap: 1.5rem;
   }
   
-  .hero-content h2 {
-    font-size: 2rem;
-    word-wrap: break-word;
-  }
-
-  .hero-content p {
-    padding: 0 1rem;
-  }
-
-  .workshop-cards {
-    flex-direction: column;
-  }
-
   .card {
+    /* Garante que o card ocupe a largura total disponível */
     max-width: 100%;
+    /* Adiciona padding interno para não ficar muito grudado nas bordas */
+    padding: 1.5rem;
   }
 }
